@@ -1,3 +1,4 @@
+import os
 from urllib.parse import urljoin
 
 import pytest
@@ -20,9 +21,11 @@ def pytest_addoption(parser):
     )
 
 
-@pytest.fixture
+@pytest.fixture(scope="session")
 def argus_version(request):
-    return request.config.option.argus_version
+    version = request.config.option.argus_version
+    os.environ["ARGUS_VERSION"] = version
+    return version
 
 
 @pytest.fixture(scope="session")
