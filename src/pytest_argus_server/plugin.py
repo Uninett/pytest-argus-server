@@ -50,7 +50,7 @@ def argus_api(wait_for_argus_api):
 
 
 @pytest.fixture(scope="session")
-def wait_for_argus_api(session_scoped_container_getter):
+def wait_for_argus_api(argus_version, session_scoped_container_getter):
     """Wait for an Argus API server to become responsive.
 
     :returns: A tuple of the request session used to test for connectivity and an
