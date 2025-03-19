@@ -21,7 +21,6 @@ services:
       - ARGUS_SEND_NOTIFICATIONS=0
       - EMAIL_HOST=localhost
       - DEFAULT_FROM_EMAIL=ci-test@example.org
-    restart: always
 
   postgres:
     image: "postgres:15"
@@ -29,7 +28,6 @@ services:
       - POSTGRES_USER=argus
       - POSTGRES_PASSWORD=argus
       - POSTGRES_DB=argus
-    restart: always
 
   redis:
     image: "redis:latest"
