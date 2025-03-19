@@ -1,7 +1,5 @@
 import os
 
-import pytest
-
 import pytest_argus_server
 
 
@@ -43,13 +41,12 @@ def test_help_message(pytester):
     )
 
 
-@pytest.mark.skip(reason="This test is not working yet")
 def test_argus_api_fixture(pytester):
     """Make sure that pytest accepts our fixture."""
 
     # create a temporary pytest test module
     pytester.makepyfile("""
-        def test_sth():
+        def test_sth(argus_api):
             url, token = argus_api
             assert url == "http://localhost:8000/api/v2"
     """)
@@ -58,10 +55,9 @@ def test_argus_api_fixture(pytester):
     plugin_dir = os.path.dirname(pytest_argus_server.__file__)
     docker_compose_file = os.path.join(plugin_dir, "docker", "docker-compose.yml")
     result = pytester.runpytest(
-        "--argus-version=1.33.0",
-        f"--docker_compose={docker_compose_file}",
+        "--argus-version=1.30.0",  # Because 1.33 (latest) is broken
+        f"--docker-compose={docker_compose_file}",
         "-v",
-        "bullshit",
     )
 
     # fnmatch_lines does an assertion internally
