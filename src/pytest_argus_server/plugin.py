@@ -50,9 +50,11 @@ def argus_api(wait_for_argus_api):
     argus_url = f"http://127.0.0.1:{service.host_port}/"
 
     response = request_session.post(
-        urljoin(argus_url, "/api/v1/token-auth/"),
-        data={"username": "admin", "password": TEST_PASSWORD},
+        urljoin(argus_url, "/api/v2/auth/token/login/"),
+        json={"username": "admin", "password": TEST_PASSWORD},
     )
+    print("Raw Argus login response:", response.text)
+    response.raise_for_status()
     token = response.json().get("token", None)
     assert token, f"Failed to get token from {response.payload}"
 
