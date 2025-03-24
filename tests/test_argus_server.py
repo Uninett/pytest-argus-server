@@ -52,11 +52,8 @@ def test_argus_api_fixture(pytester):
     """)
 
     # run pytest with the following cmd args
-    plugin_dir = os.path.dirname(pytest_argus_server.__file__)
-    docker_compose_file = os.path.join(plugin_dir, "docker", "docker-compose.yml")
     result = pytester.runpytest(
         "--argus-version=1.30.0",  # Because 1.33 (latest) is broken
-        f"--docker-compose={docker_compose_file}",
         "-v",
     )
 

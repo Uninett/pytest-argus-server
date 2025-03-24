@@ -21,6 +21,16 @@ def pytest_addoption(parser):
     )
 
 
+def pytest_configure(config):
+    """Ensure this plugin's docker-compose file is included by default"""
+    plugin_dir = os.path.dirname(__file__)
+    docker_compose_file = os.path.join(plugin_dir, "docker", "docker-compose.yml")
+    if config.option.docker_compose and ',' in config.option.docker_compose:
+        config.option.docker_compose += f",{docker_compose_file}"
+    else:
+        config.option.docker_compose = docker_compose_file
+
+
 @pytest.fixture(scope="session")
 def argus_version(request):
     version = request.config.option.argus_version
