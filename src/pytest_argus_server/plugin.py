@@ -7,7 +7,8 @@ from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 
 pytest_plugins = ["pytest_docker_compose"]
-TEST_PASSWORD = "fakef00bar"
+TEST_SOURCE_NAME = "testsource"
+TEST_SOURCE_PASSWORD = "fakef00bar"
 
 
 def pytest_addoption(parser):
@@ -39,26 +40,37 @@ def argus_version(request):
 
 
 @pytest.fixture(scope="session")
-def argus_api(wait_for_argus_api):
-    """Returns the URL and a valid token for a running Argus API server"""
-
+def argus_source_system_token(wait_for_argus_api, argus_api_url):
+    """Returns a valid source system token for a running Argus API server"""
     request_session, container = wait_for_argus_api
-    container.execute(["django-admin", "initial_setup"])
-    container.execute(["django-admin", "setpassword", "admin", TEST_PASSWORD])
+    container.execute(["django-admin", "create_source", TEST_SOURCE_NAME])
+    container.execute(["django-admin", "setpassword", TEST_SOURCE_NAME, TEST_SOURCE_PASSWORD])
 
-    service = container.network_info[0]
-    argus_url = f"http://127.0.0.1:{service.host_port}/"
-
+    print("BASE URL: ", argus_api_url)
+    login_endpoint = urljoin(argus_api_url, "auth/token/login/")
+    print("LOGIN_ENDPOINT:", login_endpoint)
     response = request_session.post(
-        urljoin(argus_url, "/api/v2/auth/token/login/"),
-        json={"username": "admin", "password": TEST_PASSWORD},
+        login_endpoint,
+        json={"username": "testsource", "password": TEST_SOURCE_PASSWORD},
     )
     print("Raw Argus login response:", response.text)
     response.raise_for_status()
     token = response.json().get("token", None)
-    assert token, f"Failed to get token from {response.payload}"
+    assert token, f"Failed to get token from {response.text}"
 
-    return "http://localhost:8000/api/v2", token
+    return token
+
+
+@pytest.fixture(scope="session")
+def argus_api_url(wait_for_argus_api):
+    """Returns an API URL base for a running Argus API server"""
+
+    _request_session, container = wait_for_argus_api
+    container.execute(["django-admin", "initial_setup"])
+
+    service = container.network_info[0]
+    argus_base_url = f"http://localhost:{service.host_port}/api/v2/"
+    return argus_base_url
 
 
 @pytest.fixture(scope="session")

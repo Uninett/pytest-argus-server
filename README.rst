@@ -56,17 +56,35 @@ image.  The actually deployed version can be controlled by adding the
 Provided fixtures
 +++++++++++++++++
 
-The main fixture provided by this plugin is the session-scoped ``argus_api``.
-When used by a test, this will ensure an Argus server is running with a
-pre-made test incident source and API token, and ready to take requests.  It
-returns a two-tuple value that provides a URL to the running API and a valid
-API token that can be used by the test:
+The main fixtures provided by this plugin are the session-scoped
+``argus_api_url`` and ``argus_source_system_token``.
+
+``argus_api_url``
+~~~~~~~~~~~~~~~~~
+
+When used by a test, this will ensure an Argus server is running and ready to
+take requests.  It returns the base URL of the running API:
 
 .. code-block:: python
 
-    def test_url_should_be_as_expected(argus_api):
-        url, token = argus_api
-        assert url == "http://localhost:8000/api/v2"
+    def test_url_should_be_as_expected(argus_api_url):
+        assert argus_api_url == "http://localhost:8000/api/v2/"
+
+
+``argus_source_system_token``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This token will create a test source system and return a valid API token for
+accessing the API as this test source.
+
+.. code-block:: python
+
+    def test_fetch_incidents(argus_api_url, argus_source_system_token):
+        assert requests.get(
+            f"{argus_api_url}/incidents/",
+            headers={"Authorization": f"Token {argus_source_system_token}"}
+        ).status_code == 200
+
 
 
 Contributing
