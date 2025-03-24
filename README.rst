@@ -86,6 +86,10 @@ accessing the API as this test source.
         ).status_code == 200
 
 
+Bugs
+----
+
+* The port number of the launched API server is hard-coded to `8000`.
 
 Contributing
 ------------
