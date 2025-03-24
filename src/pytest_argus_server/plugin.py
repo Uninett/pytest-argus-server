@@ -26,7 +26,7 @@ def pytest_configure(config):
     """Ensure this plugin's docker-compose file is included by default"""
     plugin_dir = os.path.dirname(__file__)
     docker_compose_file = os.path.join(plugin_dir, "docker", "docker-compose.yml")
-    if config.option.docker_compose and ',' in config.option.docker_compose:
+    if config.option.docker_compose and "," in config.option.docker_compose:
         config.option.docker_compose += f",{docker_compose_file}"
     else:
         config.option.docker_compose = docker_compose_file
@@ -44,7 +44,9 @@ def argus_source_system_token(wait_for_argus_api, argus_api_url):
     """Returns a valid source system token for a running Argus API server"""
     request_session, container = wait_for_argus_api
     container.execute(["django-admin", "create_source", TEST_SOURCE_NAME])
-    container.execute(["django-admin", "setpassword", TEST_SOURCE_NAME, TEST_SOURCE_PASSWORD])
+    container.execute(
+        ["django-admin", "setpassword", TEST_SOURCE_NAME, TEST_SOURCE_PASSWORD]
+    )
 
     print("BASE URL: ", argus_api_url)
     login_endpoint = urljoin(argus_api_url, "auth/token/login/")
