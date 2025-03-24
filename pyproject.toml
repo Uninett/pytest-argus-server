@@ -7,7 +7,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "pytest-argus-server"
 description = "A plugin that provides a running Argus API server for tests"
-version = "0.1.1"
+version = "0.2.0"
 readme = "README.rst"
 requires-python = ">=3.9"
 authors = [
