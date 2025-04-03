@@ -1,8 +1,3 @@
-import os
-
-import pytest_argus_server
-
-
 def test_version_fixture(pytester):
     """Make sure that pytest accepts our fixture."""
 
@@ -79,7 +74,7 @@ def test_argus_token_should_give_api_access(pytester):
 
         def test_sth(argus_api_url, argus_source_system_token):
             response = requests.get(
-                urljoin(argus_api_url, "incidents/"), 
+                urljoin(argus_api_url, "incidents/"),
                 headers={"Authorization": f"Token {argus_source_system_token}"}
             )
             assert response.status_code == 200

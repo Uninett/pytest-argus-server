@@ -14,6 +14,10 @@ pytest-argus-server
     :target: https://github.com/Uninett/pytest-argus-server/actions/workflows/main.yml
     :alt: See Build Status on GitHub Actions
 
+.. image:: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json
+    :target: https://github.com/astral-sh/ruff
+    :alt: Code style: Ruff
+
 A `pytest`_ plugin that provides a running `Argus`_ API server for tests.
 
 ----
@@ -96,6 +100,12 @@ Contributing
 Contributions are very welcome. Tests can be run with `tox`_, please ensure
 the coverage at least stays the same before you submit a pull request.
 
+All code needs to be formatted and linted by `ruff`_.  The `pre-commit`_ tool
+is used to enforce code styles at commit-time. To enable the pre-commit hooks
+in your repository run::
+
+    $ pre-commit install
+
 License
 -------
 
@@ -121,3 +131,5 @@ If you encounter any problems, please `file an issue`_ along with a detailed des
 .. _`tox`: https://tox.readthedocs.io/en/latest/
 .. _`pip`: https://pypi.org/project/pip/
 .. _`PyPI`: https://pypi.org/project
+.. _`ruff`: https://docs.astral.sh/ruff/
+.. _`pre-commit`: https://pre-commit.com/
