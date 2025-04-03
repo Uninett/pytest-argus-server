@@ -53,7 +53,7 @@ platforms = ["any"]
 [tool.ruff]
 line-length = 88
 extend-exclude = [
-    ".egg-info",
+    ".egg-info", "docs",
 ]
 output-format = "full"
 
