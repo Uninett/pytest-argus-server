@@ -71,7 +71,7 @@ def argus_api_url(wait_for_argus_api):
     container.execute(["django-admin", "initial_setup"])
 
     service = container.network_info[0]
-    argus_base_url = f"http://localhost:{service.host_port}/api/v2/"
+    argus_base_url = f"http://127.0.0.1:{service.host_port}/api/v2/"
     return argus_base_url
 
 

@@ -42,7 +42,7 @@ def test_argus_api_url_fixture_should_return_expected_url(pytester):
     # create a temporary pytest test module
     pytester.makepyfile("""
         def test_sth(argus_api_url):
-            assert argus_api_url == "http://localhost:8000/api/v2/"
+            assert argus_api_url == "http://127.0.0.1:8000/api/v2/"
     """)
 
     # run pytest with the following cmd args
