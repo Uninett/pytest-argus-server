@@ -55,7 +55,7 @@ By default, this plugin will run the *latest available* Argus server Docker
 image.  The actually deployed version can be controlled by adding the
 ``--argus-version`` command line option to pytest::
 
-  pytest --argus-version=1.30.0 tests/
+  pytest --argus-version=2.7.0 tests/
 
 Provided fixtures
 +++++++++++++++++

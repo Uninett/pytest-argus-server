@@ -4,11 +4,11 @@ def test_version_fixture(pytester):
     # create a temporary pytest test module
     pytester.makepyfile("""
         def test_sth(argus_version):
-            assert argus_version == "1.33.0"
+            assert argus_version == "2.7.0"
     """)
 
     # run pytest with the following cmd args
-    result = pytester.runpytest("--argus-version=1.33.0", "-v")
+    result = pytester.runpytest("--argus-version=2.7.0", "-v")
 
     # fnmatch_lines does an assertion internally
     result.stdout.fnmatch_lines(
@@ -47,7 +47,7 @@ def test_argus_api_url_fixture_should_return_expected_url(pytester):
 
     # run pytest with the following cmd args
     result = pytester.runpytest(
-        "--argus-version=1.30.0",  # Because 1.33 (latest) is broken
+        "--argus-version=2.7.0",
         "-v",
     )
 
@@ -82,7 +82,7 @@ def test_argus_token_should_give_api_access(pytester):
 
     # run pytest with the following cmd args
     result = pytester.runpytest(
-        "--argus-version=1.30.0",  # Because 1.33 (latest) is broken
+        "--argus-version=2.7.0",
         "-v",
     )
 
