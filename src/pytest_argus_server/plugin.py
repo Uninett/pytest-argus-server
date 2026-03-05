@@ -71,7 +71,7 @@ def argus_api_url(wait_for_argus_api):
     container.execute(["django-admin", "initial_setup"])
 
     service = container.network_info[0]
-    argus_base_url = f"http://localhost:{service.host_port}/api/v2/"
+    argus_base_url = f"http://127.0.0.1:{service.host_port}/api/v2/"
     return argus_base_url
 
 
@@ -83,7 +83,7 @@ def wait_for_argus_api(argus_version, session_scoped_container_getter):
     object representing the API container instance
     """
     request_session = requests.Session()
-    retries = Retry(total=5, backoff_factor=0.5, status_forcelist=[500, 502, 503, 504])
+    retries = Retry(total=10, backoff_factor=1, status_forcelist=[500, 502, 503, 504])
     request_session.mount("http://", HTTPAdapter(max_retries=retries))
 
     container = session_scoped_container_getter.get("argus_api")

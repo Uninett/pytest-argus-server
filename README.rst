@@ -55,7 +55,7 @@ By default, this plugin will run the *latest available* Argus server Docker
 image.  The actually deployed version can be controlled by adding the
 ``--argus-version`` command line option to pytest::
 
-  pytest --argus-version=1.30.0 tests/
+  pytest --argus-version=2.7.0 tests/
 
 Provided fixtures
 +++++++++++++++++
@@ -72,7 +72,7 @@ take requests.  It returns the base URL of the running API:
 .. code-block:: python
 
     def test_url_should_be_as_expected(argus_api_url):
-        assert argus_api_url == "http://localhost:8000/api/v2/"
+        assert argus_api_url == "http://127.0.0.1:8000/api/v2/"
 
 
 ``argus_source_system_token``
