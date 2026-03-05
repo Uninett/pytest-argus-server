@@ -16,7 +16,8 @@ authors = [
 maintainers = [
     { name = "Morten Brekkevold", email = "morten.brekkevold@sikt.no" },
 ]
-license = {file = "LICENSE"}
+license = "Apache-2.0"
+license-files = ["LICENSE"]
 classifiers = [
     "Framework :: Pytest",
     "Development Status :: 4 - Beta",
@@ -30,7 +31,6 @@ classifiers = [
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3 :: Only",
     "Programming Language :: Python :: Implementation :: CPython",
-    "License :: OSI Approved :: Apache Software License",
 ]
 dependencies = [
     "pytest>=6.2.0",
