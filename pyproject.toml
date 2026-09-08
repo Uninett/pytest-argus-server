@@ -1,13 +1,13 @@
 [build-system]
 requires = [
   "setuptools>=61.0.0",
+  "setuptools_scm>=8.0",
 ]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "pytest-argus-server"
 description = "A plugin that provides a running Argus API server for tests"
-version = "0.3.0"
 readme = "README.rst"
 requires-python = ">=3.11"
 authors = [
@@ -32,6 +32,7 @@ classifiers = [
     "Programming Language :: Python :: 3 :: Only",
     "Programming Language :: Python :: Implementation :: CPython",
 ]
+dynamic = ["version"]
 dependencies = [
     "pytest>=7.2.2",
     "pytest-docker-compose-v2>=0.2.0",
@@ -41,6 +42,8 @@ dependencies = [
 Repository = "https://github.com/Uninett/pytest-argus-server"
 [project.entry-points.pytest11]
 argus-server = "pytest_argus_server.plugin"
+
+[tool.setuptools_scm]
 
 [tool.setuptools]
 include-package-data = true
