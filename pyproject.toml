@@ -9,7 +9,7 @@ name = "pytest-argus-server"
 description = "A plugin that provides a running Argus API server for tests"
 version = "0.3.0"
 readme = "README.rst"
-requires-python = ">=3.9"
+requires-python = ">=3.11"
 authors = [
   {name="Sikt - Kunnskapssektorens Tjenesteleverandør", email="kontakt@sikt.no"}
 ]
@@ -25,16 +25,16 @@ classifiers = [
     "Topic :: Software Development :: Testing",
     "Operating System :: OS Independent",
     "Programming Language :: Python",
-    "Programming Language :: Python :: 3.9",
-    "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
     "Programming Language :: Python :: 3 :: Only",
     "Programming Language :: Python :: Implementation :: CPython",
 ]
 dependencies = [
-    "pytest>=6.2.0",
-    "pytest-docker-compose-v2==0.1.1",
+    "pytest>=7.2.2",
+    "pytest-docker-compose-v2>=0.2.0",
     "requests",
 ]
 [project.urls]
