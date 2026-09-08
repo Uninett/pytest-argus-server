@@ -31,8 +31,8 @@ classifiers = [
     "Programming Language :: Python :: Implementation :: CPython",
 ]
 dependencies = [
-    "pytest>=6.2.0",
-    "pytest-docker-compose-v2==0.1.1",
+    "pytest>=7.2.2",
+    "pytest-docker-compose-v2>=0.2.0",
     "requests",
 ]
 [project.urls]
